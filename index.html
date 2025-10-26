@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EventEase - Event Management Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+<script src="https://pay.google.com/gp/p/js/pay.js"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <div class="logo" onclick="showPage('home')">
+        <div class="logo-icon">🎟️</div>
+        <div class="logo-text">EventEase</div>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#trending">Events</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li id="auth-menu-item">
+          <!-- Auth buttons will be inserted here dynamically -->
+        </li>
+      </ul>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </nav>
+
+  <!-- Home Page -->
+  <div id="home-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>
+              Discover & Book
+              <span class="gradient-text">Amazing Events</span>
+            </h1>
+            <p>
+              Your gateway to unforgettable experiences. From concerts to conferences, 
+              find and book tickets to the world's most exciting events with ease.
+            </p>
+            <div class="hero-buttons">
+              <button class="btn-primary">
+                 <a href="#trending">Explore Events</a>
+                <span>→</span>
+              </button>
+                <button class="btn-secondary" onclick="openCreateEventPage()">Create Event</button>
+            </div>
+          </div>
+          <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800" alt="Event">
+            <div class="hero-stat">
+              <div class="hero-stat-content">
+                <div class="hero-stat-icon">👥</div>
+                <div>
+                  <div class="hero-stat-number">50K+</div>
+                  <div class="hero-stat-label">Active Users</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section  id="about" class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-images">
+            <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=400" alt="Event 1">
+            <img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=400" alt="Event 2">
+            <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=400" alt="Event 3">
+            <img src="https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=400" alt="Event 4">
+          </div>
+          <div class="about-text">
+            <h2>About <span class="highlight">EventEase</span></h2>
+            <p>
+              EventEase is your ultimate platform for discovering, booking, and managing events. 
+              We connect event organizers with enthusiastic attendees, making every experience seamless and memorable.
+            </p>
+            <p class="subtext">
+              With cutting-edge technology, secure QR code tickets, automated reminders, and calendar sync, 
+              we ensure you never miss out on the events that matter to you.
+            </p>
+            <div class="about-stats">
+              <div class="stat-item">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Events Listed</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">50K+</div>
+                <div class="stat-label">Happy Users</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Cities</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending Events Section -->
+    <section class="trending-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Trending Events</h2>
+            <p>Don't miss out on these popular events</p>
+          </div>
+          <div class="section-icon">📈</div>
+        </div>
+        <div class="events-grid">
+          <div class="event-card">
+            <div class="event-image">
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" alt="Tech Summit">
+              <div class="event-category">Technology</div>
+              <div class="event-attendees">
+                <span>👥</span>
+                <span>450 attending</span>
+              </div>
+            </div>
+            <div class="event-content">
+              <h3>Tech Summit 2025</h3>
+              <p class="event-description">Join industry leaders for cutting-edge insights into AI, blockchain, and the future of technology.</p>
+              <div class="event-details">
+                <div class="event-detail">
+                  <span class="event-detail-icon">📅</span>
+                  <span>November 15, 2025</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">🕐</span>
+                  <span>09:00 AM</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">📍</span>
+                  <span>Convention Center, Delhi</span>
+                </div>
+              </div>
+              <div class="event-footer">
+                <div class="event-price">₹10</div>
+                <button class="btn-book" onclick="bookEvent('Tech Summit 2025', 10, 'November 15, 2025', '09:00 AM', 'Convention Center, Delhi')">
+                  <span>🎟️</span>
+                  <span>Book Now</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-image">
+              <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800" alt="Music Festival">
+              <div class="event-category">Music</div>
+              <div class="event-attendees">
+                <span>👥</span>
+                <span>5000 attending</span>
+              </div>
+            </div>
+            <div class="event-content">
+              <h3>Music Festival Live</h3>
+              <p class="event-description">Experience an unforgettable night with top artists and live performances under the stars.</p>
+              <div class="event-details">
+                <div class="event-detail">
+                  <span class="event-detail-icon">📅</span>
+                  <span>November 20, 2025</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">🕐</span>
+                  <span>06:00 PM</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">📍</span>
+                  <span>Open Air Arena, Mumbai</span>
+                </div>
+              </div>
+              <div class="event-footer">
+                <div class="event-price">₹2499</div>
+                <button class="btn-book" onclick="bookEvent('Music Festival Live', 2499, 'November 20, 2025', '06:00 PM', 'Open Air Arena, Mumbai')">
+                  <span>🎟️</span>
+                  <span>Book Now</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="event-card">
+            <div class="event-image">
+              <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800" alt="Food Gala">
+              <div class="event-category">Food & Drink</div>
+              <div class="event-attendees">
+                <span>👥</span>
+                <span>200 attending</span>
+              </div>
+            </div>
+            <div class="event-content">
+              <h3>Food & Wine Gala</h3>
+              <p class="event-description">Savor exquisite cuisines and premium wines curated by Michelin-starred chefs.</p>
+              <div class="event-details">
+                <div class="event-detail">
+                  <span class="event-detail-icon">📅</span>
+                  <span>November 25, 2025</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">🕐</span>
+                  <span>07:00 PM</span>
+                </div>
+                <div class="event-detail">
+                  <span class="event-detail-icon">📍</span>
+                  <span>Grand Hotel, Bangalore</span>
+                </div>
+              </div>
+              <div class="event-footer">
+                <div class="event-price">₹3499</div>
+                <button class="btn-book" onclick="bookEvent('Food & Wine Gala', 3499, 'November 25, 2025', '07:00 PM', 'Grand Hotel, Bangalore')">
+                  <span>🎟️</span>
+                  <span>Book Now</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="trending"  class="categories-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Event Categories</h2>
+            <p>Explore events by your interests</p>
+          </div>
+        </div>
+        <div class="categories-grid">
+          <div class="category-card" onclick="showCategoryPage('Technology')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400" alt="Technology">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">💻</span>
+                  <h3>Technology</h3>
+                </div>
+                <p class="category-desc">Conferences, workshops & seminars</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="showCategoryPage('Music')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=400" alt="Music">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">🎵</span>
+                  <h3>Music</h3>
+                </div>
+                <p class="category-desc">Concerts, festivals & live shows</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="showCategoryPage('Food & Drink')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400" alt="Food">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">🍽️</span>
+                  <h3>Food & Drink</h3>
+                </div>
+                <p class="category-desc">Tastings, culinary events & galas</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="showCategoryPage('Sports')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=400" alt="Sports">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">⚽</span>
+                  <h3>Sports</h3>
+                </div>
+                <p class="category-desc">Tournaments, matches & competitions</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="showCategoryPage('Arts & Culture')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=400" alt="Arts">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">🎨</span>
+                  <h3>Arts & Culture</h3>
+                </div>
+                <p class="category-desc">Exhibitions, theater & performances</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="category-card" onclick="showCategoryPage('Business')">
+            <div class="category-inner">
+              <div class="category-image">
+                <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400" alt="Business">
+              </div>
+              <div class="category-content">
+                <div class="category-header">
+                  <span class="category-icon">💼</span>
+                  <h3>Business</h3>
+                </div>
+                <p class="category-desc">Networking, summits & conferences</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upcoming Events Section -->
+    <section class="upcoming-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-title">
+            <h2>Upcoming Events</h2>
+            <p>Mark your calendar for these events</p>
+          </div>
+          <div class="section-icon">📅</div>
+        </div>
+        <div class="upcoming-list">
+          <div class="upcoming-event">
+            <div class="upcoming-event-content">
+              <div class="upcoming-event-left">
+                <div class="event-date-box">
+                  <div class="event-date-day">20</div>
+                  <div class="event-date-month">Oct</div>
+                </div>
+                <div class="upcoming-event-info">
+                  <h3>Startup Pitch Night</h3>
+                  <div class="upcoming-event-location">
+                    <span>📍</span>
+                    <span>Tech Hub, Pune</span>
+                  </div>
+                </div>
+              </div>
+              <div class="upcoming-event-right">
+                <div class="upcoming-event-price">
+                  <div class="upcoming-price">₹499</div>
+                </div>
+                <button class="btn-view-details" onclick="viewEventDetails('Startup Pitch Night')">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="upcoming-event">
+            <div class="upcoming-event-content">
+              <div class="upcoming-event-left">
+                <div class="event-date-box">
+                  <div class="event-date-day">22</div>
+                  <div class="event-date-month">Oct</div>
+                </div>
+                <div class="upcoming-event-info">
+                  <h3>Jazz Evening</h3>
+                  <div class="upcoming-event-location">
+                    <span>📍</span>
+                    <span>Blue Note, Delhi</span>
+                  </div>
+                </div>
+              </div>
+              <div class="upcoming-event-right">
+                <div class="upcoming-event-price">
+                  <div class="upcoming-price">₹799</div>
+                </div>
+                <button class="btn-view-details" onclick="viewEventDetails('Jazz Evening')">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="upcoming-event">
+            <div class="upcoming-event-content">
+              <div class="upcoming-event-left">
+                <div class="event-date-box">
+                  <div class="event-date-day">25</div>
+                  <div class="event-date-month">Oct</div>
+                </div>
+                <div class="upcoming-event-info">
+                  <h3>Marathon 2025</h3>
+                  <div class="upcoming-event-location">
+                    <span>📍</span>
+                    <span>City Park, Hyderabad</span>
+                  </div>
+                </div>
+              </div>
+              <div class="upcoming-event-right">
+                <div class="upcoming-event-price">
+                  <div class="upcoming-price">₹299</div>
+                </div>
+                <button class="btn-view-details" onclick="viewEventDetails('Marathon 2025')">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="upcoming-event">
+            <div class="upcoming-event-content">
+              <div class="upcoming-event-left">
+                <div class="event-date-box">
+                  <div class="event-date-day">28</div>
+                  <div class="event-date-month">Oct</div>
+                </div>
+                <div class="upcoming-event-info">
+                  <h3>Art Exhibition</h3>
+                  <div class="upcoming-event-location">
+                    <span>📍</span>
+                    <span>National Gallery, Kolkata</span>
+                  </div>
+                </div>
+              </div>
+              <div class="upcoming-event-right">
+                <div class="upcoming-event-price">
+                  <div class="upcoming-price">FREE</div>
+                </div>
+                <button class="btn-view-details" onclick="viewEventDetails('Art Exhibition')">View Details</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="upcoming-event">
+            <div class="upcoming-event-content">
+              <div class="upcoming-event-left">
+                <div class="event-date-box">
+                  <div class="event-date-day">01</div>
+                  <div class="event-date-month">Nov</div>
+                </div>
+                <div class="upcoming-event-info">
+                  <h3>Photography Workshop</h3>
+                  <div class="upcoming-event-location">
+                    <span>📍</span>
+                    <span>Studio One, Chennai</span>
+                  </div>
+                </div>
+              </div>
+              <div class="upcoming-event-right">
+                <div class="upcoming-event-price">
+                  <div class="upcoming-price">₹1299</div>
+                </div>
+                <button class="btn-view-details" onclick="viewEventDetails('Photography Workshop')">View Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer  id="contact">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-about">
+            <div class="logo">
+              <div class="logo-icon">🎟️</div>
+              <div class="logo-text">EventEase</div>
+            </div>
+            <p>Your ultimate platform for discovering and booking amazing events worldwide.</p>
+            <div class="social-links">
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">𝕏</a>
+              <a href="#" class="social-icon">📷</a>
+              <a href="#" class="social-icon">in</a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Browse Events</a></li>
+              <li><a href="#">Create Event</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Support</h4>
+            <ul class="footer-links">
+              <li><a href="#">Help Center</a></li>
+              <li><a href="#">Terms of Service</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Newsletter</h4>
+            <p style="color: #9ca3af; font-size: 0.875rem; margin-bottom: 1rem;">Stay updated with the latest events</p>
+            <form class="newsletter-form">
+              <input type="email" class="newsletter-input" placeholder="Your email">
+              <button type="submit" class="newsletter-btn">✉️</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 EventEase. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Sign In Page -->
+  <div id="signin-page" class="hidden">
+    <div class="auth-page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2>Welcome Back</h2>
+            <p>Sign in to your EventEase account</p>
+          </div>
+          <form id="signin-form">
+            <div class="form-group">
+              <label>Email Address</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">✉️</span>
+                <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">🔒</span>
+                <input type="password" name="password" class="form-input" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <label class="remember-me">
+                <input type="checkbox" class="form-checkbox">
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="forgot-password">Forgot password?</a>
+            </div>
+            <button type="submit" class="btn-submit">Sign In</button>
+            <div class="auth-footer">
+              Don't have an account? 
+              <a href="#" class="auth-link" onclick="showPage('signup'); return false;">Sign Up</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sign Up Page -->
+  <div id="signup-page" class="hidden">
+    <div class="auth-page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2>Create Account</h2>
+            <p>Join EventEase and start exploring</p>
+          </div>
+          <form id="signup-form">
+            <div class="form-group">
+              <label>Full Name</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">👤</span>
+                <input type="text" name="name" class="form-input" placeholder="John Doe" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">✉️</span>
+                <input type="email" name="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">🔒</span>
+                <input type="password" name="password" class="form-input" placeholder="••••••••" required>
+              </div>
+            </div>
+            <div class="form-checkbox-wrapper">
+              <input type="checkbox" class="form-checkbox" required>
+              <label class="form-checkbox-label">
+                I agree to the <span class="highlight">Terms of Service</span> and 
+                <span class="highlight">Privacy Policy</span>
+              </label>
+            </div>
+            <button type="submit" class="btn-submit">Create Account</button>
+            <div class="auth-footer">
+              Already have an account? 
+              <a href="#" class="auth-link" onclick="showPage('signin'); return false;">Sign In</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING PAGE (NEW - LIKE SIGNIN/SIGNUP) -->
+  <div id="booking-page" class="hidden">
+    <div class="auth-page">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-header">
+            <h2>🎟️ Book Your Tickets</h2>
+            <p>Complete your booking</p>
+          </div>
+          
+          <!-- Event Details Card -->
+          <div class="booking-event-card">
+            <h3 id="booking-event-title" class="booking-event-title"></h3>
+            <div class="booking-event-details">
+              <div class="booking-detail-item">
+                <span class="booking-icon">📅</span>
+                <span id="booking-event-date"></span>
+              </div>
+              <div class="booking-detail-item">
+                <span class="booking-icon">🕐</span>
+                <span id="booking-event-time"></span>
+              </div>
+              <div class="booking-detail-item">
+                <span class="booking-icon">📍</span>
+                <span id="booking-event-location"></span>
+              </div>
+              <div class="booking-detail-item">
+                <span class="booking-icon">💰</span>
+                <span><strong id="booking-event-price"></strong> per ticket</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Booking Form -->
+          <form id="booking-form">
+            <div class="form-group">
+              <label>Number of Tickets</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">🎫</span>
+                <input type="number" id="ticket-quantity" name="quantity" class="form-input" min="1" max="10" value="1" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Your Name</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">👤</span>
+                <input type="text" id="booking-name" name="name" class="form-input" placeholder="John Doe" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">✉️</span>
+                <input type="email" id="booking-email" name="email" class="form-input" placeholder="you@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Phone Number</label>
+              <div class="form-input-wrapper">
+                <span class="form-icon">📱</span>
+                <input type="tel" id="booking-phone" name="phone" class="form-input" placeholder="+91 98765 43210" required>
+              </div>
+            </div>
+
+            <div class="total-amount-card">
+              <div class="total-label">Total Amount</div>
+              <div class="total-value" id="total-amount">₹0</div>
+            </div>
+
+            <button type="submit" class="btn-submit">
+              🎉 Confirm Booking
+            </button>
+
+            <div class="auth-footer">
+              <a href="#" class="auth-link" onclick="showPage('home'); return false;">← Back to Events</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Category Page -->
+  <div id="category-page" class="hidden">
+    <div class="category-page">
+      <div class="category-hero">
+        <div class="container">
+          <a href="#" class="back-button" onclick="showPage('home'); return false;">← Back to Home</a>
+          <div class="category-hero-content">
+            <span class="category-hero-icon" id="category-icon">💻</span>
+            <div>
+              <h1 id="category-title">Technology Events</h1>
+              <p id="category-description">Discover amazing technology events</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="category-events">
+        <div class="container">
+          <div class="category-events-grid" id="category-events-grid">
+            <!-- Events will be dynamically loaded here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- FIXED PAYMENT MODAL - Replace in your index.html -->
+
+<!-- Payment Modal -->
+<div id="payment-modal" class="payment-modal-overlay hidden">
+  <div class="payment-modal-content">
+    
+    <!-- Header -->
+    <div class="payment-header">
+      <div class="payment-icon">💳</div>
+      <h2 class="payment-title">Complete Payment</h2>
+      <p class="payment-subtitle">Secure payment powered by EventEase</p>
+    </div>
+    
+    <!-- Payment Details Card -->
+    <div class="payment-details-card">
+      <div class="payment-detail-row">
+        <div class="payment-detail-label">Event</div>
+        <div id="payment-event-name" class="payment-event-name"></div>
+      </div>
+      
+      <div class="payment-detail-grid">
+        <div class="payment-detail-item">
+          <div class="payment-detail-label-small">Tickets</div>
+          <div id="payment-quantity" class="payment-detail-value"></div>
+        </div>
+        <div class="payment-detail-item">
+          <div class="payment-detail-label-small">Price per ticket</div>
+          <div id="payment-price" class="payment-detail-value"></div>
+        </div>
+      </div>
+      
+      <div class="payment-total-row">
+        <span class="payment-total-label">Total Amount</span>
+        <span id="payment-total" class="payment-total-amount"></span>
+      </div>
+    </div>
+    
+    <!-- Payment Methods -->
+    <div class="payment-methods">
+      
+      <!-- Google Pay Button -->
+      <button id="pay-with-gpay" onclick="initiateGooglePay()" class="payment-btn payment-btn-gpay">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7v9c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z" fill="white"/>
+          <path d="M12 8v8M8 12h8" stroke="#4285f4" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Pay with Google Pay</span>
+      </button>
+      
+      <!-- Razorpay Button -->
+      <button id="pay-with-razorpay" onclick="initiateRazorpay()" class="payment-btn payment-btn-razorpay">
+        <span class="payment-btn-icon">💳</span>
+        <span>Pay with Card / UPI / Wallet</span>
+      </button>
+      
+      <!-- Demo Payment Button -->
+      <button onclick="initiateDemoPay()" class="payment-btn payment-btn-demo">
+        <span class="payment-btn-icon">🧪</span>
+        <span>Demo Payment (Testing)</span>
+      </button>
+    </div>
+    
+    <!-- Security Badge -->
+    <div class="payment-security-badge">
+      <span class="security-icon">🔒</span>
+      <div class="security-info">
+        <div class="security-title">Secure Payment</div>
+        <div class="security-text">Your payment information is encrypted and secure</div>
+      </div>
+    </div>
+    
+    <!-- Cancel Button -->
+    <button onclick="closePaymentModal()" class="payment-btn-cancel">
+      ❌ Cancel Payment
+    </button>
+  </div>
+</div>
+
+<!-- Payment Processing Loader -->
+<div id="payment-processing" class="payment-processing-overlay hidden">
+  <div class="processing-spinner"></div>
+  <div class="processing-title">Processing Payment...</div>
+  <div class="processing-text">Please do not close this window</div>
+</div>
+
+<style>
+/* Payment Modal Styles */
+.payment-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.payment-modal-content {
+  background: linear-gradient(135deg, #1a0033 0%, #0a0a0a 100%);
+  border: 2px solid #7c3aed;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 550px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(124, 58, 237, 0.5);
+  margin: auto;
+  position: relative;
+}
+
+/* Custom scrollbar for modal content */
+.payment-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.payment-modal-content::-webkit-scrollbar-track {
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: 10px;
+}
+
+.payment-modal-content::-webkit-scrollbar-thumb {
+  background: #7c3aed;
+  border-radius: 10px;
+}
+
+.payment-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #a855f7;
+}
+
+/* Header */
+.payment-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.payment-icon {
+  font-size: 64px;
+  margin-bottom: 10px;
+}
+
+.payment-title {
+  color: #a855f7;
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.payment-subtitle {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Payment Details Card */
+.payment-details-card {
+  background: rgba(126, 58, 237, 0.1);
+  border: 2px solid #7c3aed;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 30px;
+}
+
+.payment-detail-row {
+  margin-bottom: 15px;
+}
+
+.payment-detail-label {
+  color: #9ca3af;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.payment-event-name {
+  color: #fff;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.payment-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.payment-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.payment-detail-label-small {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.payment-detail-value {
+  color: #fff;
+  font-weight: 600;
+}
+
+.payment-total-row {
+  padding-top: 20px;
+  border-top: 2px dashed #7c3aed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.payment-total-label {
+  color: #a855f7;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.payment-total-amount {
+  color: #a855f7;
+  font-weight: 700;
+  font-size: 32px;
+}
+
+/* Payment Methods */
+.payment-methods {
+  display: grid;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.payment-btn {
+  color: white;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.payment-btn:hover {
+  transform: translateY(-2px);
+}
+
+.payment-btn-gpay {
+  background: linear-gradient(135deg, #4285f4, #34a853);
+}
+
+.payment-btn-gpay:hover {
+  box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4);
+}
+
+.payment-btn-razorpay {
+  background: linear-gradient(135deg, #528ff0, #3f51b5);
+}
+
+.payment-btn-razorpay:hover {
+  box-shadow: 0 10px 25px rgba(82, 143, 240, 0.4);
+}
+
+.payment-btn-demo {
+  background: rgba(126, 58, 237, 0.2);
+  color: #a855f7;
+  border: 2px solid #7c3aed;
+}
+
+.payment-btn-demo:hover {
+  background: rgba(126, 58, 237, 0.3);
+}
+
+.payment-btn-icon {
+  font-size: 24px;
+}
+
+/* Security Badge */
+.payment-security-badge {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px solid #7c3aed;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.security-icon {
+  font-size: 24px;
+}
+
+.security-info {
+  flex: 1;
+}
+
+.security-title {
+  color: #a855f7;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.security-text {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* Cancel Button */
+.payment-btn-cancel {
+  width: 100%;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 16px;
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.payment-btn-cancel:hover {
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* Payment Processing Overlay */
+.payment-processing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.processing-spinner {
+  width: 80px;
+  height: 80px;
+  border: 6px solid rgba(124, 58, 237, 0.3);
+  border-top-color: #7c3aed;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.processing-title {
+  color: #a855f7;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.processing-text {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .payment-modal-content {
+    padding: 30px 20px;
+    max-height: 85vh;
+  }
+  
+  .payment-title {
+    font-size: 24px;
+  }
+  
+  .payment-icon {
+    font-size: 48px;
+  }
+  
+  .payment-total-amount {
+    font-size: 28px;
+  }
+  
+  .payment-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .payment-btn {
+    padding: 16px;
+    font-size: 14px;
+  }
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open {
+  overflow: hidden;
+  height: 100vh;
+}
+</style>
+<!-- CREATE EVENT PAGE - Add to your index.html after category-page -->
+
+<div id="create-event-page" class="hidden">
+  <div class="create-event-container">
+    
+    <!-- Header -->
+    <div class="create-event-header">
+      <a href="#" class="back-button" onclick="showPage('home'); return false;">← Back to Home</a>
+      <div class="create-event-header-content">
+        <h1 class="create-event-title">Create Your Event</h1>
+        <p class="create-event-subtitle">Share your amazing event with the world</p>
+      </div>
+    </div>
+
+    <!-- Create Event Form -->
+    <div class="create-event-form-container">
+      <form id="create-event-form" class="create-event-form">
+        
+        <!-- Event Image Upload -->
+        <div class="form-section">
+          <h3 class="section-title">📸 Event Image</h3>
+          <div class="image-upload-area" id="image-upload-area">
+            <input type="file" id="event-image-input" accept="image/*" style="display: none;">
+            <div class="image-upload-content" onclick="document.getElementById('event-image-input').click()">
+              <div class="upload-icon">🖼️</div>
+              <div class="upload-text">Click to upload event image</div>
+              <div class="upload-hint">JPG, PNG or WEBP (Max 5MB)</div>
+            </div>
+            <div id="image-preview" class="image-preview hidden">
+              <img id="preview-img" src="" alt="Event Preview">
+              <button type="button" class="remove-image-btn" onclick="removeEventImage()">✕</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Basic Information -->
+        <div class="form-section">
+          <h3 class="section-title">📋 Basic Information</h3>
+          
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label class="form-label">Event Title *</label>
+              <input 
+                type="text" 
+                name="title" 
+                class="form-input" 
+                placeholder="e.g., Tech Conference 2025" 
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select name="category" class="form-select" required>
+                <option value="">Select Category</option>
+                <option value="Technology">💻 Technology</option>
+                <option value="Music">🎵 Music</option>
+                <option value="Food & Drink">🍽️ Food & Drink</option>
+                <option value="Sports">⚽ Sports</option>
+                <option value="Arts & Culture">🎨 Arts & Culture</option>
+                <option value="Business">💼 Business</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Price (₹) *</label>
+              <input 
+                type="number" 
+                name="price" 
+                class="form-input" 
+                placeholder="0 for free events" 
+                min="0"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Description *</label>
+            <textarea 
+              name="description" 
+              class="form-textarea" 
+              rows="4" 
+              placeholder="Tell people what your event is about..."
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Date & Time -->
+        <div class="form-section">
+          <h3 class="section-title">📅 Date & Time</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Event Date *</label>
+              <input 
+                type="date" 
+                name="date" 
+                class="form-input" 
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Event Time *</label>
+              <input 
+                type="time" 
+                name="time" 
+                class="form-input" 
+                required
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="form-section">
+          <h3 class="section-title">📍 Location</h3>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Venue Name *</label>
+            <input 
+              type="text" 
+              name="venue" 
+              class="form-input" 
+              placeholder="e.g., Convention Center" 
+              required
+            >
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City *</label>
+              <input 
+                type="text" 
+                name="city" 
+                class="form-input" 
+                placeholder="e.g., Mumbai" 
+                required
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">State *</label>
+              <input 
+                type="text" 
+                name="state" 
+                class="form-input" 
+                placeholder="e.g., Maharashtra" 
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Full Address</label>
+            <input 
+              type="text" 
+              name="address" 
+              class="form-input" 
+              placeholder="Street address, building, etc."
+            >
+          </div>
+        </div>
+
+        <!-- Event Details -->
+        <div class="form-section">
+          <h3 class="section-title">✨ Event Highlights</h3>
+          
+          <div class="form-group full-width">
+            <label class="form-label">Key Highlights (One per line)</label>
+            <textarea 
+              name="highlights" 
+              class="form-textarea" 
+              rows="5" 
+              placeholder="e.g.,&#10;Expert speakers from top companies&#10;Networking opportunities&#10;Free lunch and refreshments&#10;Certificate of participation"
+            ></textarea>
+            <small class="form-hint">Enter each highlight on a new line</small>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">What to Expect</label>
+            <textarea 
+              name="whatToExpect" 
+              class="form-textarea" 
+              rows="4" 
+              placeholder="Give attendees a detailed overview of what they can expect..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Capacity & Contact -->
+        <div class="form-section">
+          <h3 class="section-title">👥 Capacity & Contact</h3>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Maximum Attendees</label>
+              <input 
+                type="number" 
+                name="maxAttendees" 
+                class="form-input" 
+                placeholder="e.g., 100" 
+                min="1"
+              >
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Contact Email *</label>
+              <input 
+                type="email" 
+                name="contactEmail" 
+                class="form-input" 
+                placeholder="your@email.com" 
+                required
+              >
+            </div>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label">Contact Phone</label>
+            <input 
+              type="tel" 
+              name="contactPhone" 
+              class="form-input" 
+              placeholder="+91 98765 43210"
+            >
+          </div>
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="form-section">
+          <label class="checkbox-label">
+            <input type="checkbox" name="agreeTerms" required>
+            <span>I agree to the <a href="#" class="text-link">Terms & Conditions</a> and confirm that all information provided is accurate *</span>
+          </label>
+        </div>
+
+        <!-- Submit Buttons -->
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" onclick="cancelEventCreation()">
+            Cancel
+          </button>
+          <button type="submit" class="btn-create-event">
+            <span>🚀</span>
+            <span>Create Event</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Event Created Success Modal -->
+<div id="event-created-modal" class="event-success-overlay hidden">
+  <div class="event-success-content">
+    <div class="success-animation">
+      <div class="success-checkmark">
+        <div class="check-icon">
+          <span class="icon-line line-tip"></span>
+          <span class="icon-line line-long"></span>
+          <div class="icon-circle"></div>
+          <div class="icon-fix"></div>
+        </div>
+      </div>
+    </div>
+    
+    <h2 class="success-title">Event Created Successfully! 🎉</h2>
+    <p class="success-message">Your event has been published and is now live on EventEase</p>
+    
+    <div class="created-event-preview" id="created-event-preview">
+      <!-- Event preview will be inserted here -->
+    </div>
+    
+    <div class="success-actions">
+      <button class="btn-view-event" onclick="viewMyCreatedEvent()">
+        View Event
+      </button>
+      <button class="btn-create-another" onclick="createAnotherEvent()">
+        Create Another
+      </button>
+      <button class="btn-back-home" onclick="backToHomeFromSuccess()">
+        Back to Home
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Create Event Page Styles */
+.create-event-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a0033 100%);
+  padding: 80px 20px 40px;
+}
+
+.create-event-header {
+  max-width: 900px;
+  margin: 0 auto 40px;
+}
+
+.create-event-header-content {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.create-event-title {
+  font-size: 42px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a855f7, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+.create-event-subtitle {
+  color: #9ca3af;
+  font-size: 18px;
+}
+
+/* Form Container */
+.create-event-form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(26, 0, 51, 0.6);
+  border: 2px solid #7c3aed;
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(10px);
+}
+
+.create-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Form Sections */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.section-title {
+  color: #a855f7;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(124, 58, 237, 0.3);
+}
+
+/* Image Upload */
+.image-upload-area {
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+  border: 3px dashed #7c3aed;
+  border-radius: 16px;
+  background: rgba(124, 58, 237, 0.05);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.image-upload-area:hover {
+  border-color: #a855f7;
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.image-upload-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  gap: 15px;
+}
+
+.upload-icon {
+  font-size: 64px;
+}
+
+.upload-text {
+  color: #a855f7;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.upload-hint {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+.image-preview {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.remove-image-btn:hover {
+  background: #ef4444;
+  transform: scale(1.1);
+}
+
+/* Form Rows & Groups */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  color: #d1d5db;
+  font-size: 14px;
+  font-weight: 600;
+}
+.create-event-page
+.form-input,
+.form-select,
+.form-textarea {
+  background: rgba(15, 15, 15, 0.8);
+  border: 2px solid #7c3aed;
+  border-radius: 12px;
+  padding: 20px 19px;
+  color: #fff;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: rgba(15, 15, 15, 0.95);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.2);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-hint {
+  color: #9ca3af;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.form-select {
+  cursor: pointer;
+}
+
+.form-select option {
+  background: #1a0033;
+  color: #fff;
+}
+
+/* Checkbox */
+.checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  color: #d1d5db;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #7c3aed;
+}
+
+.text-link {
+  color: #a855f7;
+  text-decoration: underline;
+}
+
+.text-link:hover {
+  color: #7c3aed;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(124, 58, 237, 0.3);
+}
+
+.btn-cancel {
+  flex: 1;
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 16px 32px;
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-cancel:hover {
+  background: rgba(239, 68, 68, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-create-event {
+  flex: 2;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.btn-create-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.6);
+}
+
+/* Success Modal */
+.event-success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+
+.event-success-content {
+  background: linear-gradient(135deg, #1a0033 0%, #0a0a0a 100%);
+  border: 2px solid #10b981;
+  border-radius: 24px;
+  padding: 50px 40px;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Success Animation */
+.success-animation {
+  margin-bottom: 30px;
+}
+
+.success-checkmark {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.check-icon {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 50%;
+  box-sizing: content-box;
+  border: 4px solid #10b981;
+}
+
+.icon-line {
+  height: 5px;
+  background-color: #10b981;
+  display: block;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+}
+
+.line-tip {
+  top: 56px;
+  left: 25px;
+  width: 25px;
+  transform: rotate(45deg);
+  animation: icon-line-tip 0.75s;
+}
+
+.line-long {
+  top: 50px;
+  right: 16px;
+  width: 47px;
+  transform: rotate(-45deg);
+  animation: icon-line-long 0.75s;
+}
+
+.icon-circle {
+  top: -4px;
+  left: -4px;
+  z-index: 10;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: absolute;
+  box-sizing: content-box;
+  border: 4px solid rgba(16, 185, 129, 0.2);
+}
+
+.icon-fix {
+  top: 12px;
+  width: 10px;
+  left: 34px;
+  z-index: 1;
+  height: 95px;
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: #0a0a0a;
+}
+
+@keyframes icon-line-tip {
+  0% {
+    width: 0;
+    left: 1px;
+    top: 26px;
+  }
+  54% {
+    width: 0;
+    left: 1px;
+    top: 26px;
+  }
+  70% {
+    width: 50px;
+    left: -8px;
+    top: 37px;
+  }
+  84% {
+    width: 17px;
+    left: 21px;
+    top: 48px;
+  }
+  100% {
+    width: 25px;
+    left: 25px;
+    top: 56px;
+  }
+}
+
+@keyframes icon-line-long {
+  0% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  65% {
+    width: 0;
+    right: 46px;
+    top: 54px;
+  }
+  84% {
+    width: 55px;
+    right: 0;
+    top: 35px;
+  }
+  100% {
+    width: 47px;
+    right: 16px;
+    top: 50px;
+  }
+}
+
+.success-title {
+  color: #10b981;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: #9ca3af;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.created-event-preview {
+  background: rgba(124, 58, 237, 0.1);
+  border: 2px solid #7c3aed;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.btn-view-event,
+.btn-create-another,
+.btn-back-home {
+  width: 100%;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+}
+
+.btn-view-event {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: white;
+}
+
+.btn-create-another {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a855f7;
+  border: 2px solid #7c3aed;
+}
+
+.btn-back-home {
+  background: rgba(156, 163, 175, 0.1);
+  color: #9ca3af;
+  border: 2px solid #6b7280;
+}
+
+.btn-view-event:hover,
+.btn-create-another:hover,
+.btn-back-home:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .create-event-container {
+    padding: 60px 15px 30px;
+  }
+  
+  .create-event-title {
+    font-size: 32px;
+  }
+  
+  .create-event-form-container {
+    padding: 25px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .image-upload-content {
+    height: 200px;
+  }
+  
+  .image-preview {
+    height: 300px;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+</style>
+  <script src="js/app.js"></script>
+</body>
+</html>
